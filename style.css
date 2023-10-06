@@ -1,0 +1,14 @@
+.height-11rem {
+    height: 11vw;
+    min-height: 7rem;
+    background: linear-gradient(180deg, rgba(57,202,234,0.3) 0%, rgba(154,29,121,0.3) 100%);
+}
+
+.wrapper{
+    background-color: #070D0B;
+}
+
+h1 {
+    font-size: 1.65rem;
+    font-family: Baloo;
+}
