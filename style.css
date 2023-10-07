@@ -4,6 +4,14 @@
     background: linear-gradient(180deg, rgba(57, 202, 234, 0.3) 0%, rgba(154, 29, 121, 0.3) 100%);
 }
 
+.instr {
+    background-color: rgba(108, 157, 146, 0.15);
+}
+
+.instr img{
+    max-width: 25%;
+}
+
 footer {
     background-color: rgba(169, 96, 150, 0.3);
 }
@@ -15,18 +23,24 @@ body {
 .wrapper {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 30vh 65vh 5vh;
+    grid-template-rows: 25vh minmax(70vh, auto) 5vh;
 }
 
-main{
-    display:grid;
-    grid-template-rows: 50% 50%;
+main {
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 65% 25%;
+    gap: 10%;
 }
 
-h1 {
+h1, h2 {
     font-size: 1.65rem;
     color: #F8F2F6;
     font-family: 'Baloo Bhai 2', cursive;
+}
+
+h2 {
+    font-size: 1.5rem;
 }
 
 p {
