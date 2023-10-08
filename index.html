@@ -21,7 +21,7 @@
 
         <main class="px-5 m-5">
             <div class="texto">
-                <h1>Seja bem-vindo(a) ao Ultimate Footbal Simulator 3040!</h1>
+                <h1>Seja bem-vindo(a) ao Ultimate Footbal Simulator 3064!</h1>
                 <p>Baseando-se numa dinâmica fácil e divertida, Ultimate Football Simulator 3064 é um jogo fácil e
                     simples de entender e jogar! Confira as intruções e regras do jogo ao lado antes de começar!</p>
                 <input type="number" name="time" id="time" value="" /><br>
@@ -34,9 +34,7 @@
                     <h2>Instruções</h2>
                     <img class="icon ml-5" src="Group 6AAAAAAAAAA (1).png" alt="Lâmpada">
                 </div>
-                <p>Primeiro você faz bla bla bla daí você fazer bla bla bla e quando bla bla bla você faz bla blabla
-                    daí você fazer bla bla bla e quando bla bla bla você faz bla bla bla daí você fazer bla bla bla e
-                    quando bla bla bla você faz bla bla bla</p>
+                <p>As instruções são bem simples: <br>Primeiro você define o número de times que participar do campeonato. <br>Depois o site irá gerar todos confrontos que irão acontecer no campeonato, depois disso basta você decidir os resultados das partidas e o site dirá todas as posições dos times. </p>
             </div>
         </main>
 
@@ -47,24 +45,27 @@
         document.querySelector('#add').addEventListener('click', inserirtimes);
 
         class Time {
-            constructor(nome) {
+            constructor(nome, pontos) {
                 this.nome = nome;
+                this.pontos = pontos;
             }
         }
         const times = [];
+        let partidas = []; i
 
         function inserirtimes() {
             var valorTime = parseInt(document.querySelector("#time").value);
 
             if (valorTime >= 4 && valorTime <= 20) {
                 times.length = 0;
+                partidas.length = 0; // Limpe a variável partidas
 
                 for (let i = 1; i <= valorTime; i++) {
                     let nomeTime = prompt(`Digite o nome para o Time ${i}:`);
-                    let novoTime = new Time(nomeTime);
+                    let novoTime = new Time(nomeTime, 0, 0);
                     times.push(novoTime);
                 }
-                let partidas = gerarPartidas(times);
+                partidas = gerarPartidas(times); // Atribua as partidas corretamente
                 exibirPartidas(partidas);
             } else {
                 alert("Número de times deve estar entre 4 e 20");
@@ -82,40 +83,61 @@
         }
 
         function exibirPartidas(partidas) {
-            let html = '<h2> Partidas que irão acontecer <3</h2>';
-            for (let i = 0; i < partidas.length; i++) {
-                let partida = partidas[i];
-                html += `<p>${partida[0].nome} vs. ${partida[1].nome}</p>`;
-            }
-            html += '<h2> Defina os resultados<3</h2>';
+            let html = '<h2>Defina os resultados</h2>';
             html += '<form>';
 
             for (let i = 0; i < partidas.length; i++) {
                 let partida = partidas[i];
-                html += `<p> ${partida[0].nome} vs. ${partida[1].nome}: <input type="text" id="resultado${i}" placeholder='resultado'></p>`;
+                html += `<p>${partida[0].nome} <input type="text" id="resultado1_${i}"> vs. ${partida[1].nome} <input type="text" id="resultado2_${i}"></p>`;
             }
             html += '<input type="submit" value="Registrar resultados">';
-            html += '</form>'; // Feche o formulário aqui
-            document.getElementById('partidas').innerHTML = html;
-            document.querySelector('form').addEventListener('submit', function (e) {
-                e.preventDefault();
-                const resultadoPartidas = [];
-                for (let i = 0; i < partidas.length; i++) {
-                    const resultado = document.querySelector(`#resultado${i}`).value;
-                    resultadoPartidas.push({ partida: partidas[i], resultado });
-                }
-                exibirResultados(resultadoPartidas);
-            });
+            html += '</form>';
+            document.querySelector('#partidas').innerHTML = html;
+            document.querySelector('form').addEventListener('submit', registrarResultados);
         }
 
-        function exibirResultados(resultados) {
-            let html = '<h2>Resultados das partidas:</h2>';
-            for (let i = 0; i < resultados.length; i++) {
-                const partida = resultados[i].partida;
-                const resultado = resultados[i].resultado;
-                html += `<p>${partida[0].nome} vs. ${partida[1].nome}: ${resultado}</p>`;
+        function registrarResultados(event) {
+            event.preventDefault();
+
+            for (let i = 0; i < partidas.length; i++) {
+                const resultado1 = parseInt(document.querySelector(`#resultado1_${i}`).value);
+                const resultado2 = parseInt(document.querySelector(`#resultado2_${i}`).value);
+
+                if (!isNaN(resultado1) && !isNaN(resultado2)) {
+                    if (resultado1 > resultado2) {
+                        partidas[i][0].pontos += 3;
+                    } else if (resultado2 > resultado1) {
+                        partidas[i][1].pontos += 3;
+                    } else {
+                        partidas[i][0].pontos += 1;
+                        partidas[i][1].pontos += 1;
+                    }
+                }
             }
-            document.getElementById('resultadoPartidas').innerHTML = html;
+            atualizarTabelaClassificacao();
+            limparCamposResultados();
+        }
+
+        function atualizarTabelaClassificacao() {
+            times.sort((a, b) => b.pontos - a.pontos);
+
+            let tabela = '<h2>Tabela de Classificação</h2>';
+            tabela += '<table>';
+            tabela += '<tr><th>Posição</th><th>Time</th><th>Pontos</th></tr>';
+
+            for (let i = 0; i < times.length; i++) {
+                tabela += `<tr><td>${i + 1}</td><td>${times[i].nome}</td><td>${times[i].pontos}</td></tr>`;
+            }
+
+            tabela += '</table>';
+            document.getElementById('resultadoPartidas').innerHTML = tabela;
+        }
+
+        function limparCamposResultados() {
+            for (let i = 0; i < partidas.length; i++) {
+                document.querySelector(`#resultado1_${i}`).value = '';
+                document.querySelector(`#resultado2_${i}`).value = '';
+            }
         }
     </script>
 </body>
