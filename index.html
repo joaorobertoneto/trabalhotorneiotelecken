@@ -27,7 +27,7 @@
                 <input type="number" name="time" id="time" value="" /><br>
                 <input type='button' value='Adicionar times' id="add">
                 <div id="partidas"></div>
-                <div id="resultadoPartidas"></div> <!-- Adicionando um elemento para exibir resultados -->
+                <div id="resultadoPartidas"></div> 
             </div>
             <div class="instr px-4 py-3 rounded">
                 <div class="d-flex justify-content-between align-items-end mb-2">
@@ -41,8 +41,8 @@
         <footer>
         </footer>
     </div>
-    <script>
-        document.querySelector('#add').addEventListener('click', inserirtimes);
+    <script> //ta meio bagunçadinho mas é a vida (tem uns ngc vamos ter q mudar depois, ta do jeito q ta pq queria chegar na tabela o mais rapido)
+        document.querySelector('#add').addEventListener('click', inserirtimes); 
 
         class Time {
             constructor(nome, pontos) {
@@ -58,14 +58,14 @@
 
             if (valorTime >= 4 && valorTime <= 20) {
                 times.length = 0;
-                partidas.length = 0; // Limpe a variável partidas
+                partidas.length = 0; // 
 
                 for (let i = 1; i <= valorTime; i++) {
                     let nomeTime = prompt(`Digite o nome para o Time ${i}:`);
                     let novoTime = new Time(nomeTime, 0, 0);
                     times.push(novoTime);
                 }
-                partidas = gerarPartidas(times); // Atribua as partidas corretamente
+                partidas = gerarPartidas(times); // 
                 exibirPartidas(partidas);
             } else {
                 alert("Número de times deve estar entre 4 e 20");
