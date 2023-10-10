@@ -106,7 +106,7 @@
                 const resultado1 = parseInt(document.querySelector(`#resultado1_${i}`).value);
                 const resultado2 = parseInt(document.querySelector(`#resultado2_${i}`).value);
 
-                if (!isNaN(resultado1) && !isNaN(resultado2)) {
+                if (!isNaN(resultado1) && !isNaN(resultado2)) { // !isNaN  verifica se o resultado não é um numero(se for um numero vai dar true se n for vai dar false!!!)
                     if (resultado1 > resultado2) {
                         partidas[i][0].pontos += 3;
                         partidas[i][0].saldo += resultado1 - resultado2;
