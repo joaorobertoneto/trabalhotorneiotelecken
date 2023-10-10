@@ -41,13 +41,14 @@
         <footer>
         </footer>
     </div>
-    <script> //ta meio bagunçadinho mas é a vida (tem uns ngc vamos ter q mudar depois, ta do jeito q ta pq queria chegar na tabela o mais rapido)
+    <script> // botei o saldo mas ainda n incrementei que ele muda algo na tabela, ou seja se os times tiverem pontuação igual o saldo n vai mudar nada por enquanto.
         document.querySelector('#add').addEventListener('click', inserirtimes); 
 
         class Time {
-            constructor(nome, pontos) {
+            constructor(nome, pontos,saldo) {
                 this.nome = nome;
                 this.pontos = pontos;
+                this.saldo = saldo;
             }
         }
         const times = [];
@@ -106,8 +107,12 @@
                 if (!isNaN(resultado1) && !isNaN(resultado2)) {
                     if (resultado1 > resultado2) {
                         partidas[i][0].pontos += 3;
+                        partidas[i][0].saldo +=resultado1-resultado2;
+                        partidas[i][1].saldo +=resultado2-resultado1;
                     } else if (resultado2 > resultado1) {
                         partidas[i][1].pontos += 3;
+                        partidas[i][0].saldo +=resultado1-resultado2;
+                        partidas[i][1].saldo +=resultado2-resultado1;
                     } else {
                         partidas[i][0].pontos += 1;
                         partidas[i][1].pontos += 1;
@@ -123,10 +128,10 @@
 
             let tabela = '<h2>Tabela de Classificação</h2>';
             tabela += '<table>';
-            tabela += '<tr><th>Posição</th><th>Time</th><th>Pontos</th></tr>';
+            tabela += '<tr><th>Posição</th><th>Time</th><th>Pontos</th></th>Saldo<th></tr>';
 
             for (let i = 0; i < times.length; i++) {
-                tabela += `<tr><td>${i + 1}</td><td>${times[i].nome}</td><td>${times[i].pontos}</td></tr>`;
+                tabela += `<tr><td>${i + 1}</td><td>${times[i].nome}</td><td>${times[i].pontos}</td><td>${times[i].saldo}</td></tr>`;
             }
 
             tabela += '</table>';
