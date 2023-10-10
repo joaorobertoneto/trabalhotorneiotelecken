@@ -27,14 +27,16 @@
                 <input type="number" name="time" id="time" value="" /><br>
                 <input type='button' value='Adicionar times' id="add">
                 <div id="partidas"></div>
-                <div id="resultadoPartidas"></div> 
+                <div id="resultadoPartidas"></div>
             </div>
             <div class="instr px-4 py-3 rounded">
                 <div class="d-flex justify-content-between align-items-end mb-2">
                     <h2>Instruções</h2>
                     <img class="icon ml-5" src="Group 6AAAAAAAAAA (1).png" alt="Lâmpada">
                 </div>
-                <p>As instruções são bem simples: <br>Primeiro você define o número de times que participar do campeonato. <br>Depois o site irá gerar todos confrontos que irão acontecer no campeonato, depois disso basta você decidir os resultados das partidas e o site dirá todas as posições dos times. </p>
+                <p>As instruções são bem simples: <br>Primeiro você define o número de times que participarão do
+                    campeonato. <br>Depois o site irá gerar todos confrontos que irão acontecer no campeonato, depois
+                    disso basta você decidir os resultados das partidas e o site dirá todas as posições dos times. </p>
             </div>
         </main>
 
@@ -42,17 +44,17 @@
         </footer>
     </div>
     <script> // botei o saldo mas ainda n incrementei que ele muda algo na tabela, ou seja se os times tiverem pontuação igual o saldo n vai mudar nada por enquanto.
-        document.querySelector('#add').addEventListener('click', inserirtimes); 
+        document.querySelector('#add').addEventListener('click', inserirtimes);
 
         class Time {
-            constructor(nome, pontos,saldo) {
+            constructor(nome, pontos, saldo) {
                 this.nome = nome;
                 this.pontos = pontos;
                 this.saldo = saldo;
             }
         }
         const times = [];
-        let partidas = []; i
+        let partidas = [];
 
         function inserirtimes() {
             var valorTime = parseInt(document.querySelector("#time").value);
@@ -107,12 +109,12 @@
                 if (!isNaN(resultado1) && !isNaN(resultado2)) {
                     if (resultado1 > resultado2) {
                         partidas[i][0].pontos += 3;
-                        partidas[i][0].saldo +=resultado1-resultado2;
-                        partidas[i][1].saldo +=resultado2-resultado1;
+                        partidas[i][0].saldo += resultado1 - resultado2;
+                        partidas[i][1].saldo += resultado2 - resultado1;
                     } else if (resultado2 > resultado1) {
                         partidas[i][1].pontos += 3;
-                        partidas[i][0].saldo +=resultado1-resultado2;
-                        partidas[i][1].saldo +=resultado2-resultado1;
+                        partidas[i][0].saldo += resultado1 - resultado2;
+                        partidas[i][1].saldo += resultado2 - resultado1;
                     } else {
                         partidas[i][0].pontos += 1;
                         partidas[i][1].pontos += 1;
@@ -126,9 +128,19 @@
         function atualizarTabelaClassificacao() {
             times.sort((a, b) => b.pontos - a.pontos);
 
+            /*
+            for (let i = 0; i < times.length; i++) {
+                for (let n = i + 1; n < times.length; n++) { 
+                    if (times[i].pontos==times[n].pontos){
+                        //sorteia por maior saldo ou algo assim, n sei como usa o sort e n deu tempo de pesquisar tive q sair :(
+                    }
+                }
+            }
+                    */
+
             let tabela = '<h2>Tabela de Classificação</h2>';
             tabela += '<table>';
-            tabela += '<tr><th>Posição</th><th>Time</th><th>Pontos</th></th>Saldo<th></tr>';
+            tabela += '<tr><th>Posição</th><th>Time</th><th>Pontos</th><th>Saldo</th></tr>';
 
             for (let i = 0; i < times.length; i++) {
                 tabela += `<tr><td>${i + 1}</td><td>${times[i].nome}</td><td>${times[i].pontos}</td><td>${times[i].saldo}</td></tr>`;
