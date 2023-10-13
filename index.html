@@ -128,15 +128,15 @@
         function atualizarTabelaClassificacao() {
             times.sort((a, b) => b.pontos - a.pontos);
 
-            /*
+            
             for (let i = 0; i < times.length; i++) {
                 for (let n = i + 1; n < times.length; n++) { 
                     if (times[i].pontos==times[n].pontos){
-                        //sorteia por maior saldo ou algo assim, n sei como usa o sort e n deu tempo de pesquisar tive q sair :(
+                      times.sort((a, b) => b.saldo - a.saldo);
                     }
                 }
             }
-                    */
+                
 
             let tabela = '<h2>Tabela de Classificação</h2>';
             tabela += '<table>';
