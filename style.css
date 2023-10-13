@@ -47,3 +47,17 @@ p {
     color: #F8F2F6;
     font-family: 'Oxygen', sans-serif;
 }
+.resultadoPartidas{
+    color: white
+
+}
+table{
+    color: white;
+    padding: 5px;
+}
+th{
+    padding: 5px;
+}
+td{
+    padding: 5px;
+}
