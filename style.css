@@ -43,7 +43,7 @@ h2 {
     font-size: 1.5rem;
 }
 
-p {
+p, .btn {
     color: #F8F2F6;
     font-family: 'Oxygen', sans-serif;
 }
@@ -51,13 +51,26 @@ p {
     color: white
 
 }
+
+.btn{
+    background-color: #070D0B;
+    border: 2px solid #F8F2F6;
+}
+
+.btn:hover{
+    background-color: #F8F2F6;
+    color: #070D0B;
+}
+
 table{
     color: white;
     padding: 5px;
 }
+
 th{
     padding: 5px;
 }
+
 td{
     padding: 5px;
 }
