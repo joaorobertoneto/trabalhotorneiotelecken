@@ -126,17 +126,12 @@
         }
 
         function atualizarTabelaClassificacao() {
-            times.sort((a, b) => b.pontos - a.pontos);
-
-            
-            for (let i = 0; i < times.length; i++) {
-                for (let n = i + 1; n < times.length; n++) { 
-                    if (times[i].pontos==times[n].pontos){
-                      times.sort((a, b) => b.saldo - a.saldo);
-                    }
-                }
-            }
-                
+            times.sort((a, b) => {
+        if (a.pontos === b.pontos) {
+            return b.saldo - a.saldo;
+        }
+        return b.pontos - a.pontos;
+    });
 
             let tabela = '<h2>Tabela de Classificação</h2>';
             tabela += '<table>';
