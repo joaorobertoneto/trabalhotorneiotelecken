@@ -8,8 +8,13 @@
     background-color: rgba(108, 157, 146, 0.15);
 }
 
-.instr img{
+.titulo {
+    flex-wrap: wrap-reverse;
+}
+
+.instr img {
     max-width: 25%;
+    width: auto;
 }
 
 footer {
@@ -22,15 +27,17 @@ body {
 
 .wrapper {
     display: grid;
-    grid-template-columns: 100%;
     grid-template-rows: 25vh minmax(70vh, auto) 5vh;
 }
 
 main {
     display: grid;
-    grid-template-rows: 100%;
     grid-template-columns: 65% 25%;
     gap: 10%;
+    align-items: start;
+    margin: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 h1, h2 {
@@ -44,33 +51,58 @@ h2 {
 }
 
 p, .btn {
+    font-size: 1rem;
     color: #F8F2F6;
     font-family: 'Oxygen', sans-serif;
 }
-.resultadoPartidas{
-    color: white
 
+.resultadoPartidas {
+    color: white
 }
 
-.btn{
+.btn {
     background-color: #070D0B;
     border: 2px solid #F8F2F6;
 }
 
-.btn:hover{
+.btn:hover {
     background-color: #F8F2F6;
     color: #070D0B;
 }
 
-table{
+table {
     color: white;
     padding: 5px;
 }
 
-th{
+th {
     padding: 5px;
 }
 
-td{
+td {
     padding: 5px;
+}
+
+@media (max-width: 600px) {
+
+    .wrapper {
+        grid-template-rows: 15vh minmax(82vh, auto) 3vh;
+    }
+
+    h1, h2 {
+        font-size: 1.375rem;
+    }
+
+    p, .btn {
+        font-size: 0.875rem;
+    }
+
+    main {
+        grid-template-columns: 100%;
+        grid-template-rows: min-content auto;
+        gap: 5%;
+        margin: 2rem 1rem;
+    }
+    
+
 }
