@@ -74,6 +74,9 @@ table {
     color: white;
     padding: 5px;
 }
+form input[type=text]{
+    width: 6%;
+}
 
 th {
     padding: 5px;
@@ -104,5 +107,8 @@ td {
         margin: 2rem 1rem;
     }
     
+form input[type=text]{
+        width: 7%;
+    }
 
 }
