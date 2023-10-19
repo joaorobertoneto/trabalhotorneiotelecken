@@ -124,7 +124,6 @@
                 }
             }
             atualizarTabelaClassificacao();
-            limpar();
         }
 
         function atualizarTabelaClassificacao() {
@@ -148,12 +147,6 @@
             localStorage.setItem("tab", JSON.stringify(tabela)); //se for fazer um botão teria q ter a função)
         }
 
-        function limpar() {
-            for (let i = 0; i < partidas.length; i++) {
-                document.querySelector(`#resultado1_${i}`).value = '';
-                document.querySelector(`#resultado2_${i}`).value = '';
-            }
-        }
 
         function carregar() { //aqui ta o problema (ali em cima ta salvando direitinho)
             document.getElementById('resultadoPartidas').innerHTML=localStorage.getItem("tab"); // o ngc ta sendo salvo como outra  coisa, n como tabela
